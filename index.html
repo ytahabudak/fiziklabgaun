@@ -16,9 +16,10 @@ header.top a{text-decoration:none}
 header.top b{color:var(--amber)}
 /* HERO */
 .hero{position:relative;background:var(--ink);color:#e8eef5;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden}
-.hero .txt{position:relative;padding:3rem 1.5rem 3.5rem;max-width:760px;text-shadow:0 2px 12px #000a}
-.hero h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.08;margin:0 0 .8rem}
-.hero p{font-size:1.15rem;margin:0;color:#c5d3e2}
+.hero .txt{position:relative;padding:3rem 1.5rem 3.5rem;max-width:min(760px,66%);text-shadow:0 2px 12px #000a}
+.hero h1{font-size:clamp(1.35rem,3.2vw,2.3rem);line-height:1.3;font-weight:700;margin:0 0 1.2rem}
+.hero h1 .by{font:400 1rem "Segoe UI",system-ui,sans-serif;margin-top:.8rem;color:var(--amber)}
+.hero p{font-size:1.05rem;margin:0;color:#c5d3e2}
 .hero small{display:block;margin-top:1.2rem;color:var(--amber);font-family:"Segoe UI",sans-serif}
 /* DERSLER */
 .wrap{max-width:1040px;margin:0 auto;padding:2.5rem 1.2rem}
@@ -63,7 +64,9 @@ header.top .brand img{height:42px;width:auto;background:#fff;border-radius:50%;p
 .pad{position:absolute;left:0;right:0;bottom:2.2rem;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:.5}
 #alt{position:absolute;right:1.2rem;top:1rem;font:700 .95rem "Courier New",monospace;color:var(--amber);background:#0c1a2bcc;border:1px solid var(--line);padding:.25rem .7rem;border-radius:4px}
 @media(max-width:700px){#rk{left:86%;width:54px;margin-left:-27px;opacity:.6}}
+@media(max-width:700px){.hero .txt{max-width:none}}
 @media(prefers-reduced-motion:reduce){#fl{animation:none}}
+.pdfbtn{display:inline-block;font:600 .95rem "Segoe UI",sans-serif;background:var(--warn);color:#fff;padding:.5rem 1rem;border-radius:4px;text-decoration:none}
 </style>
 </head>
 <body>
@@ -106,6 +109,10 @@ const items=t=>(t||'').split('\n').map(x=>x.replace(/^\s*([-*•]|\d+[.)])\s*/,'
 const paras=t=>(t||'').split(/\n\s*\n/).filter(Boolean).map(p=>`<p>${esc(p)}</p>`).join('');
 const dkod=(kod,d,i)=>{const m=d.match(/^(\d+)/);return kod+'-D'+(m?m[1]:String(i+1)).padStart(2,'0')};
 const sec=(h,b)=>b?`<h2>${h}</h2>${b}`:'';
+async function pdf(k,d,ad,v){
+  const p=BASE+enc(k)+'/'+(d?enc(d)+'/':''),u=v&&/^https?:/.test(v)?v:p+enc(v||ad);
+  try{if(u!==p+enc(v||ad)||(await fetch(u,{method:'HEAD'})).ok)return `<a class="pdfbtn" href="${u}" download>PDF indir</a>`}catch(e){}
+  return ''}
 async function video(k,d,v){
   const p=BASE+enc(k)+'/'+enc(d)+'/';
   if(v){const y=v.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/);
@@ -124,7 +131,7 @@ async function home(){
   <path d="M50 4 C72 40 78 90 78 150 L78 192 L22 192 L22 150 C22 90 28 40 50 4Z" fill="#e8eef5"/>
   <path d="M50 4 C60 18 66 34 69 52 L31 52 C34 34 40 18 50 4Z" fill="#ffb454"/>
   <circle cx="50" cy="100" r="14" fill="#0c1a2b" stroke="#6fd3e8" stroke-width="4"/><rect x="36" y="192" width="28" height="9" fill="#5b6b7e"/></svg></div>
-  <div class="txt"><h1>Teoriniz ne kadar güzel olursa olsun, ne kadar akıllı olursanız olun, deneyle uyuşmuyorsa yanlıştır. "Richard Feynman"</h1>
+  <div class="txt"><h1>“Teoriniz ne kadar güzel olursa olsun, ne kadar akıllı olursanız olun, deneyle uyuşmuyorsa yanlıştır.”<small class="by">Richard Feynman</small></h1>
   <p>Gaziantep Üniversitesi Fizik Mühendisliği laboratuvar deneyleri: videolar, malzeme listeleri ve yapılış adımları tek yerde.</p>
   <small class="ui">Ders Listesi Aşağıda Bulunuyor</small></div></section>
   <section class="wrap"><h2 class="ui" style="margin-top:0">Dersler</h2><div class="courses">${
@@ -132,16 +139,16 @@ async function home(){
 }
 async function course(k){
   const [t,ds]=await Promise.all([load(BASE+enc(k)+'/ders.txt'),deneyler(k)]);
-  const kod=t.o.KOD||k;
+  const kod=t.o.KOD||k,pb=await pdf(k,'','ders.pdf',t.o.PDF);
   const E=await Promise.all(ds.map(async d=>({d,...await load(BASE+enc(k)+'/'+enc(d)+'/deney.txt')})));
   return `<div class="nb"><div class="wrap"><div class="crumb"><a href="#/">Ana sayfa</a> / ${esc(kod)}</div>
-  <h1 style="margin:0">${esc(kod)}: ${esc(t.o.AD||k)}</h1><p>${esc(t.o.OZET||'')}</p><div class="list">${
+  <h1 style="margin:0">${esc(kod)}: ${esc(t.o.AD||k)}</h1><p>${esc(t.o.OZET||'')}</p>${pb?`<p>${pb}</p>`:''}<div class="list">${
   E.map((e,i)=>`<a href="#/${enc(k)}/${enc(e.d)}"><span class="code">${dkod(kod,e.d,i)}</span><span><b>${esc(e.o.BASLIK||e.d)}</b><br><small class="ui">${esc([e.o.SURE,e.o.ZORLUK].filter(Boolean).join(' · '))}</small></span></a>`).join('')||'<p>Bu derse henüz deney eklenmemiş.</p>'}</div></div></div>`;
 }
 async function exp(k,d){
   const [t,e,ds]=await Promise.all([load(BASE+enc(k)+'/ders.txt'),load(BASE+enc(k)+'/'+enc(d)+'/deney.txt'),deneyler(k)]);
   if(!e.o.BASLIK)return nf();
-  const kod=t.o.KOD||k,v=await video(k,d,e.o.VIDEO),sp=x=>(x||'').split(';').map(s=>s.trim()).filter(Boolean);
+  const kod=t.o.KOD||k,v=await video(k,d,e.o.VIDEO),pb=await pdf(k,d,'deney.pdf',e.o.PDF),sp=x=>(x||'').split(';').map(s=>s.trim()).filter(Boolean);
   const ul=a=>a.length?`<ul>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'',ol=a=>a.length?`<ol>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:'';
   return `<div class="nb"><div class="wrap"><div class="crumb"><a href="#/">Ana sayfa</a> / <a href="#/${enc(k)}">${esc(kod)}</a> / ${esc(e.o.BASLIK)}</div>
   <article class="sheet"><div class="code">${dkod(kod,d,ds.indexOf(d))}</div><h1>${esc(e.o.BASLIK)}</h1>
@@ -149,7 +156,7 @@ async function exp(k,d){
   <div class="vid">${v}</div>${sec('Amaç',paras(e.s.AMAC))}${sec('Teori',paras(e.s.TEORI))}${sec('Malzemeler',ul(items(e.s.MALZEME)))}${sec('Yapılış',ol(items(e.s.ADIMLAR)))}${sec('Notlar',paras(e.s.NOT||e.s.NOTLAR))}
   <h2>Hata hesaplayıcı</h2><div class="calc ui"><p>Tekrarlı ölçümlerinizi boşluk veya virgülle ayırarak yazın.</p>
   <textarea id="vals" placeholder="2.01 2.03 1.98 2.02"></textarea><button id="go">Hesapla</button><output id="out"></output></div>
-  <p class="ui"><button class="btn" onclick="print()">Sayfayı yazdır</button></p></article></div></div>`;
+  <p class="ui">${pb} <button class="btn" onclick="print()">Sayfayı yazdır</button></p></article></div></div>`;
 }
 const nf=()=>`<div class="wrap"><h1>Sayfa bulunamadı</h1><p><a href="#/">Ana sayfaya dönün.</a></p></div>`;
 function calc(){const g=$('#go');if(!g)return;g.onclick=()=>{
