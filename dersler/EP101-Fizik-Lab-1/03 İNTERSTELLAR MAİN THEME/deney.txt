@@ -1,0 +1,24 @@
+BASLIK: İNTERSTELLAR MAİN THEME
+SURE: 10 dk
+ZORLUK: Kolay
+OLCULEN: Periyot T (s); Uzunluk L (m)
+
+# Video: YouTube bağlantısı yazın. YA DA video dosyasını klasöre video.mp4 adıyla koyun ve burayı boş bırakın.
+VIDEO: https://www.youtube.com/watch?v=UDVtMYqUAyw
+
+[AMAC]
+- İNTERSTELLAR MAİN THEME
+
+[TEORI]
+-TEORİK VERİ YAZILMALI 
+
+[MALZEME]
+- BOLCA SEVGİ
+- BOLCA SAYGI
+
+[ADIMLAR]
+- Birinci adım
+- İkinci adım
+
+[NOT]
+İsteğe bağlı: hata kaynakları, rapor notları vb.

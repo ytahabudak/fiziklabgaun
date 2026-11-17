@@ -1,0 +1,4 @@
+KOD: EP101
+AD: Fizik Laboratuvarı I
+DONEM: Güz
+OZET: Mekanik ve ölçme temelleri

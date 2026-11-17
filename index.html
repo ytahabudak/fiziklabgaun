@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fizik Mühendisliği Deney Portalı | Gaziantep Üniversitesi</title>
+<style>
+:root{--ink:#0c1a2b;--panel:#12263d;--line:#24405f;--amber:#ffb454;--cyan:#6fd3e8;--paper:#f2f5ef;--grid:#cfdcd0;--text:#1b2a41;--muted:#5b6b7e;--warn:#c8431f}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.65 Georgia,"Iowan Old Style",serif;color:var(--text);background:var(--paper)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.ui{font-family:"Segoe UI",system-ui,sans-serif}
+header.top{background:var(--ink);color:#e8eef5;padding:.7rem 1.2rem;display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
+header.top a{text-decoration:none}
+header.top b{color:var(--amber)}
+/* HERO */
+.hero{position:relative;background:var(--ink);color:#e8eef5;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero .txt{position:relative;padding:3rem 1.5rem 3.5rem;max-width:760px;text-shadow:0 2px 12px #000a}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.08;margin:0 0 .8rem}
+.hero p{font-size:1.15rem;margin:0;color:#c5d3e2}
+.hero small{display:block;margin-top:1.2rem;color:var(--amber);font-family:"Segoe UI",sans-serif}
+/* DERSLER */
+.wrap{max-width:1040px;margin:0 auto;padding:2.5rem 1.2rem}
+.courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+.course{display:block;text-decoration:none;background:var(--ink);color:#e8eef5;border:1px solid var(--line);border-radius:6px;padding:1.2rem;position:relative}
+.course:hover{border-color:var(--amber)}
+.course .kod{font:700 2rem/1 "Courier New",monospace;color:var(--amber);letter-spacing:.05em}
+.course h3{margin:.6rem 0 .2rem;font-size:1.1rem}
+.course p{margin:0;color:#9db1c7;font-size:.95rem}
+.course .n{position:absolute;right:1rem;top:1rem;color:var(--cyan);font:.85rem "Segoe UI",sans-serif}
+/* NOTEBOOK */
+.nb{background:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;min-height:70vh}
+.crumb{font:.9rem "Segoe UI",sans-serif;color:var(--muted);margin-bottom:1rem}
+.crumb a{color:var(--text)}
+.sheet{background:#fffffa;border:1px solid #b9c7ba;border-left:6px solid var(--amber);padding:1.5rem 1.8rem;box-shadow:3px 3px 0 #b9c7ba}
+.sheet h1{margin:.2rem 0 .3rem;font-size:2rem;line-height:1.2}
+.code{font:700 .95rem "Courier New",monospace;color:var(--warn)}
+.meta{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0;font:.9rem "Segoe UI",sans-serif}
+.meta span{border:1px solid var(--text);padding:.15rem .6rem;border-radius:3px;background:#fff}
+.meta .w{border-color:var(--warn);color:var(--warn);font-weight:700}
+.sheet h2{font-size:1.2rem;margin:1.8rem 0 .4rem;border-bottom:2px solid var(--text);display:inline-block}
+.sheet ol,.sheet ul{padding-left:1.3rem}
+.vid{position:relative;aspect-ratio:16/9;background:var(--ink);color:#9db1c7;display:grid;place-items:center;text-align:center;border-radius:4px;overflow:hidden}
+.vid iframe,.vid video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.calc textarea{width:100%;min-height:70px;font:1rem "Courier New",monospace;padding:.5rem}
+.calc button,.btn{font:600 .95rem "Segoe UI",sans-serif;background:var(--ink);color:#fff;border:0;padding:.5rem 1rem;border-radius:4px;cursor:pointer}
+.calc output{display:block;margin-top:.6rem;font-family:"Courier New",monospace}
+.list a{display:flex;gap:1rem;align-items:baseline;padding:.9rem 1rem;margin-bottom:.6rem;background:#fffffa;border:1px solid #b9c7ba;text-decoration:none}
+.list a:hover{border-color:var(--amber);background:#fff}
+.list .code{min-width:3.2rem}
+footer{background:var(--ink);color:#9db1c7;padding:1.5rem;text-align:center;font:.9rem "Segoe UI",sans-serif}
+@media print{header.top,footer,.calc,.crumb{display:none}.nb{background:#fff}.sheet{box-shadow:none}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.msg{padding:2rem;font-family:"Segoe UI",sans-serif}
+header.top .brand{display:flex;align-items:center;gap:.7rem}
+header.top .brand img{height:42px;width:auto;background:#fff;border-radius:50%;padding:3px}
+.hero #cv{position:absolute;inset:0;width:100%;height:100%}
+#rk{position:absolute;left:76%;bottom:2.2rem;width:74px;margin-left:-37px;will-change:transform;filter:drop-shadow(0 0 18px #ffb45455)}
+#rk svg{display:block;width:100%;height:auto;overflow:visible}
+#fl{transform-box:fill-box;transform-origin:50% 0;animation:fk .12s infinite alternate}
+@keyframes fk{from{transform:scaleY(.75)}to{transform:scaleY(1.2)}}
+.pad{position:absolute;left:0;right:0;bottom:2.2rem;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:.5}
+#alt{position:absolute;right:1.2rem;top:1rem;font:700 .95rem "Courier New",monospace;color:var(--amber);background:#0c1a2bcc;border:1px solid var(--line);padding:.25rem .7rem;border-radius:4px}
+@media(max-width:700px){#rk{left:86%;width:54px;margin-left:-27px;opacity:.6}}
+@media(prefers-reduced-motion:reduce){#fl{animation:none}}
+</style>
+</head>
+<body>
+<header class="top ui">
+  <a class="brand" href="#/"><img src="logo.png" alt="Gaziantep Üniversitesi logosu" onerror="this.style.display='none'"><span><b>Fizik Müh.</b> Deney Portalı</span></a>
+</header>
+<main id="app"></main>
+<footer>Gaziantep Üniversitesi, Fizik Mühendisliği Bölümü<br>Yusuf Taha BUDAK tarafından hazırlanmıştır.</footer>
+<script>
+const $=s=>document.querySelector(s),app=$('#app'),BASE='dersler/',enc=encodeURIComponent;
+const UY={gerilim:"Yüksek gerilim: bağlantıları kapalı devrede yapın.",lazer:"Lazer: ışını göz hizasına ve yansıtıcı yüzeylere yöneltmeyin."};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const cmp=(a,b)=>a.localeCompare(b,'tr',{numeric:true});
+const norm=s=>s.trim().toLocaleUpperCase('tr').replace(/Ç/g,'C').replace(/İ/g,'I').replace(/Ş/g,'S').replace(/Ğ/g,'G').replace(/Ü/g,'U').replace(/Ö/g,'O');
+let stop=null,idx=null,rid=0;
+const NONE={o:{},s:{}};
+
+/* ---- Dosya okuma ---- */
+async function txt(u){const r=await fetch(u);if(!r.ok)throw new Error(u);return r.text()}
+async function dirs(u){ // klasör listesinden alt klasörleri bulur
+  const abs=new URL(u,location.href),doc=new DOMParser().parseFromString(await txt(u),'text/html');
+  return [...doc.querySelectorAll('a[href]')].map(a=>new URL(a.getAttribute('href'),abs))
+   .filter(x=>x.origin===abs.origin&&x.pathname.endsWith('/')&&x.pathname.startsWith(abs.pathname)&&x.pathname!==abs.pathname)
+   .map(x=>decodeURIComponent(x.pathname.slice(abs.pathname.length,-1))).filter(n=>n&&!n.includes('/')).sort(cmp)}
+async function getIdx(){ // liste.json varsa onu, yoksa klasör listesini kullanır
+  if(idx)return idx;
+  try{idx=JSON.parse(await txt(BASE+'liste.json'))}catch(e){idx={};(await dirs(BASE)).forEach(k=>idx[k]=null)}
+  return idx}
+async function deneyler(k){const i=await getIdx();if(!i[k])i[k]=await dirs(BASE+enc(k)+'/');return [...i[k]].sort(cmp)}
+function parse(t){const o={},s={};let c=null;
+  t.replace(/^\uFEFF/,'').split(/\r?\n/).forEach(l=>{
+    if(l.trim().startsWith('#'))return;
+    const m=l.match(/^\[(.+?)\]\s*$/);if(m){c=norm(m[1]);s[c]=[];return}
+    if(c){s[c].push(l);return}
+    const f=l.match(/^([^:]+):\s*(.*)$/);if(f)o[norm(f[1])]=f[2].trim()});
+  for(const k in s)s[k]=s[k].join('\n').trim();
+  return {o,s}}
+const load=(u)=>txt(u).then(parse).catch(()=>NONE);
+const items=t=>(t||'').split('\n').map(x=>x.replace(/^\s*([-*•]|\d+[.)])\s*/,'').trim()).filter(Boolean);
+const paras=t=>(t||'').split(/\n\s*\n/).filter(Boolean).map(p=>`<p>${esc(p)}</p>`).join('');
+const dkod=(kod,d,i)=>{const m=d.match(/^(\d+)/);return kod+'-D'+(m?m[1]:String(i+1)).padStart(2,'0')};
+const sec=(h,b)=>b?`<h2>${h}</h2>${b}`:'';
+async function video(k,d,v){
+  const p=BASE+enc(k)+'/'+enc(d)+'/';
+  if(v){const y=v.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/);
+    if(y)return `<iframe src="https://www.youtube-nocookie.com/embed/${y[1]}" title="Deney videosu" allowfullscreen loading="lazy"></iframe>`;
+    return `<video controls preload="metadata" src="${/^https?:/.test(v)?v.replace(/"/g,'%22'):p+enc(v)}"></video>`}
+  try{const r=await fetch(p+'video.mp4',{method:'HEAD'});if(r.ok)return `<video controls preload="metadata" src="${p}video.mp4"></video>`}catch(e){}
+  return '<div>Deney videosu eklenecek</div>'}
+
+/* ---- Sayfalar ---- */
+async function home(){
+  const ks=Object.keys(await getIdx()).sort(cmp);
+  const L=await Promise.all(ks.map(async k=>({k,...await load(BASE+enc(k)+'/ders.txt')})));
+  return `<section class="hero"><canvas id="cv" aria-hidden="true"></canvas><div class="pad"></div><div id="alt" aria-hidden="true">İrtifa: 0 m</div>
+  <div id="rk" aria-hidden="true"><svg viewBox="0 0 100 260"><g id="fl"><path d="M38 198 Q50 262 62 198Z" fill="#ffb454"/><path d="M44 198 Q50 235 56 198Z" fill="#fff3c4"/></g>
+  <path d="M22 150 L2 202 L22 190Z" fill="#ffb454"/><path d="M78 150 L98 202 L78 190Z" fill="#ffb454"/>
+  <path d="M50 4 C72 40 78 90 78 150 L78 192 L22 192 L22 150 C22 90 28 40 50 4Z" fill="#e8eef5"/>
+  <path d="M50 4 C60 18 66 34 69 52 L31 52 C34 34 40 18 50 4Z" fill="#ffb454"/>
+  <circle cx="50" cy="100" r="14" fill="#0c1a2b" stroke="#6fd3e8" stroke-width="4"/><rect x="36" y="192" width="28" height="9" fill="#5b6b7e"/></svg></div>
+  <div class="txt"><h1>Her fırlatış bir ölçümle başlar.</h1>
+  <p>Gaziantep Üniversitesi Fizik Mühendisliği laboratuvar deneyleri: videolar, malzeme listeleri ve yapılış adımları tek yerde.</p>
+  <small class="ui">Sayfayı aşağı kaydırın, roket yükselsin.</small></div></section>
+  <section class="wrap"><h2 class="ui" style="margin-top:0">Dersler</h2><div class="courses">${
+  L.map(d=>`<a class="course" href="#/${enc(d.k)}"><div class="kod">${esc(d.o.KOD||d.k)}</div><h3>${esc(d.o.AD||d.k)}</h3><p>${esc([d.o.OZET,d.o.DONEM].filter(Boolean).join(' · '))}</p></a>`).join('')||'<p>Henüz ders eklenmemiş.</p>'}</div></section>`;
+}
+async function course(k){
+  const [t,ds]=await Promise.all([load(BASE+enc(k)+'/ders.txt'),deneyler(k)]);
+  const kod=t.o.KOD||k;
+  const E=await Promise.all(ds.map(async d=>({d,...await load(BASE+enc(k)+'/'+enc(d)+'/deney.txt')})));
+  return `<div class="nb"><div class="wrap"><div class="crumb"><a href="#/">Ana sayfa</a> / ${esc(kod)}</div>
+  <h1 style="margin:0">${esc(kod)}: ${esc(t.o.AD||k)}</h1><p>${esc(t.o.OZET||'')}</p><div class="list">${
+  E.map((e,i)=>`<a href="#/${enc(k)}/${enc(e.d)}"><span class="code">${dkod(kod,e.d,i)}</span><span><b>${esc(e.o.BASLIK||e.d)}</b><br><small class="ui">${esc([e.o.SURE,e.o.ZORLUK].filter(Boolean).join(' · '))}</small></span></a>`).join('')||'<p>Bu derse henüz deney eklenmemiş.</p>'}</div></div></div>`;
+}
+async function exp(k,d){
+  const [t,e,ds]=await Promise.all([load(BASE+enc(k)+'/ders.txt'),load(BASE+enc(k)+'/'+enc(d)+'/deney.txt'),deneyler(k)]);
+  if(!e.o.BASLIK)return nf();
+  const kod=t.o.KOD||k,v=await video(k,d,e.o.VIDEO),sp=x=>(x||'').split(';').map(s=>s.trim()).filter(Boolean);
+  const ul=a=>a.length?`<ul>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'',ol=a=>a.length?`<ol>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:'';
+  return `<div class="nb"><div class="wrap"><div class="crumb"><a href="#/">Ana sayfa</a> / <a href="#/${enc(k)}">${esc(kod)}</a> / ${esc(e.o.BASLIK)}</div>
+  <article class="sheet"><div class="code">${dkod(kod,d,ds.indexOf(d))}</div><h1>${esc(e.o.BASLIK)}</h1>
+  <div class="meta">${e.o.SURE?`<span>Süre: ${esc(e.o.SURE)}</span>`:''}${e.o.ZORLUK?`<span>Zorluk: ${esc(e.o.ZORLUK)}</span>`:''}${sp(e.o.OLCULEN).map(m=>`<span>${esc(m)}</span>`).join('')}${sp(e.o.UYARI).map(u=>`<span class="w">⚠ ${esc(UY[u.toLowerCase()]||u)}</span>`).join('')}</div>
+  <div class="vid">${v}</div>${sec('Amaç',paras(e.s.AMAC))}${sec('Teori',paras(e.s.TEORI))}${sec('Malzemeler',ul(items(e.s.MALZEME)))}${sec('Yapılış',ol(items(e.s.ADIMLAR)))}${sec('Notlar',paras(e.s.NOT||e.s.NOTLAR))}
+  <h2>Hata hesaplayıcı</h2><div class="calc ui"><p>Tekrarlı ölçümlerinizi boşluk veya virgülle ayırarak yazın.</p>
+  <textarea id="vals" placeholder="2.01 2.03 1.98 2.02"></textarea><button id="go">Hesapla</button><output id="out"></output></div>
+  <p class="ui"><button class="btn" onclick="print()">Sayfayı yazdır</button></p></article></div></div>`;
+}
+const nf=()=>`<div class="wrap"><h1>Sayfa bulunamadı</h1><p><a href="#/">Ana sayfaya dönün.</a></p></div>`;
+function calc(){const g=$('#go');if(!g)return;g.onclick=()=>{
+  const v=$('#vals').value.split(/[\s,;]+/).map(s=>parseFloat(s.replace(',','.'))).filter(Number.isFinite),n=v.length;
+  if(n<2){$('#out').textContent='En az iki sayı girin.';return}
+  const m=v.reduce((a,b)=>a+b)/n,s=Math.sqrt(v.reduce((a,b)=>a+(b-m)**2,0)/(n-1));
+  $('#out').innerHTML=`N = ${n}<br>Ortalama = ${m.toPrecision(5)}<br>Standart sapma = ${s.toPrecision(3)}<br>Ortalamanın belirsizliği = ${(s/Math.sqrt(n)).toPrecision(3)}`}}
+function rocket(){
+  const hero=$('.hero'),rk=$('#rk'),alt=$('#alt'),cv=$('#cv'),ctx=cv.getContext('2d');let st=[],busy=false;
+  function size(){cv.width=hero.clientWidth;cv.height=hero.clientHeight;
+    st=Array.from({length:110},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.3+.3,s:Math.random()*.5+.1}));upd()}
+  function upd(){busy=false;
+    const h=hero.clientHeight,y=Math.max(0,scrollY),p=Math.min(y/h,1.15);
+    rk.style.transform=`translateY(${-p*h*1.05}px)`;
+    alt.textContent='İrtifa: '+Math.round(y*12).toLocaleString('tr-TR')+' m';
+    ctx.clearRect(0,0,cv.width,cv.height);ctx.fillStyle='#e8eef5';
+    st.forEach(s=>{ctx.globalAlpha=.35+.5*s.s;ctx.beginPath();ctx.arc(s.x,(s.y+y*s.s)%cv.height,s.r,0,7);ctx.fill()})}
+  const on=()=>{if(!busy){busy=true;requestAnimationFrame(upd)}};
+  addEventListener('scroll',on,{passive:true});addEventListener('resize',size);size();
+  stop=()=>{removeEventListener('scroll',on);removeEventListener('resize',size)};
+}
+
+async function route(){
+  if(stop){stop();stop=null}
+  const my=++rid,[,a,b]=location.hash.split('/').map(x=>x&&decodeURIComponent(x));scrollTo(0,0);
+  app.innerHTML='<div class="msg">Yükleniyor…</div>';
+  try{
+    const h=a?(b?await exp(a,b):await course(a)):await home();
+    if(my!==rid)return;
+    app.innerHTML=h;if(!a)rocket();else if(b)calc();
+  }catch(err){
+    if(my!==rid)return;
+    app.innerHTML=location.protocol==='file:'
+     ?'<div class="msg"><h2>Site bir web sunucusu üzerinden açılmalı</h2><p>Dosyaya çift tıklayarak açtığınızda tarayıcı ders dosyalarını okuyamaz. Bilgisayarınızda denemek için bu klasörde <code>python -m http.server 8000</code> çalıştırıp <code>http://localhost:8000</code> adresini açın.</p></div>'
+     :'<div class="msg"><h2>Dersler okunamadı</h2><p>dersler klasörü bulunamadı ya da sunucuda klasör listeleme kapalı. Bilgi İşlem’in OKUBENI.txt dosyasındaki 2. adımı uygulaması gerekir.</p></div>';
+  }
+}
+addEventListener('hashchange',route);route();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+KOD: EP105
+AD: Elektrik ve Manyetizma Laboratuvarı
+DONEM: Bahar
+OZET: Devreler, alanlar ve osiloskop

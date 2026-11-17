@@ -1,0 +1,11 @@
+BİLGİ İŞLEM İÇİN
+1) Bu klasörün tamamını web klasörüne kopyalayın. Ek program gerekmez.
+2) Yeni ders eklemek: hocadan gelen ders klasörünü "dersler" klasörünün içine koymak yeterlidir. Site otomatik görür.
+   Sunucuda klasör listeleme (directory listing / autoindex) AÇIK ise başka işlem gerekmez.
+   Kapalıysa: her yüklemeden sonra liste-olustur.py çalıştırılır (dersler/liste.json oluşur),
+   ya da liste.json elle düzenlenir.
+3) Ders klasörü yapısı:
+   dersler/EP101-Fizik-Lab-1/ders.txt
+   dersler/EP101-Fizik-Lab-1/01-Deney-Adi/deney.txt   (+ isteğe bağlı video.mp4)
+4) Dosyalar UTF-8 olmalıdır. .mp4 dosyaları için sunucuda video türü engellenmemiş olmalıdır.
+5) Yerelde denemek için: bu klasörde "python -m http.server 8000" çalıştırıp http://localhost:8000 açın.

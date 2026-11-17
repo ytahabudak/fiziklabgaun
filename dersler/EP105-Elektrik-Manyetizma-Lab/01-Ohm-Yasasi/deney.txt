@@ -1,0 +1,21 @@
+BASLIK: Ohm yasası ve direnç ölçümü
+SURE: 90 dk
+ZORLUK: Kolay
+OLCULEN: Gerilim V (V); Akım I (A); R (Ω)
+UYARI: gerilim
+
+[AMAC]
+Bir direncin akım–gerilim karakteristiğini çıkarmak.
+
+[TEORI]
+Ohmik iletkenlerde V = IR. V – I grafiğinin eğimi direnci verir.
+
+[MALZEME]
+- DC güç kaynağı
+- Multimetre (2 adet)
+- Direnç kartı
+
+[ADIMLAR]
+- Devreyi güç kaynağı kapalıyken kurun.
+- Gerilimi 1 V adımlarla artırıp akımı okuyun.
+- V – I grafiğinden R değerini bulun.

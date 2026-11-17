@@ -1,0 +1,6 @@
+# DERS BİLGİSİ. Sadece ":" işaretinden sonrasını doldurun. "#" ile başlayan satırlar açıklamadır.
+# Dosya adını değiştirmeyin: ders.txt  (dosyayı ders klasörünün içine koyun)
+KOD: 
+AD: 
+DONEM: 
+OZET: 

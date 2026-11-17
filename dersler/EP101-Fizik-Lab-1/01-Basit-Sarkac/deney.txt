@@ -1,0 +1,22 @@
+BASLIK: Basit sarkaç ile yerçekimi ivmesi
+SURE: 90 dk
+ZORLUK: Kolay
+OLCULEN: Periyot T (s); İp uzunluğu L (m); g (m/s²)
+UYARI:
+VIDEO:
+
+[AMAC]
+Basit sarkacın periyodundan yerçekimi ivmesini bulmak ve ölçüm belirsizliğini hesaplamak.
+
+[TEORI]
+Küçük açılı salınımlarda periyot T = 2π√(L/g) bağıntısıyla verilir. Buradan g = 4π²L/T² elde edilir.
+
+[MALZEME]
+- Çelik bilye ve ip
+- Metre
+- Kronometre
+
+[ADIMLAR]
+- İpi standa bağlayıp L uzunluğunu ölçün.
+- Bilyeyi 10° altında bir açıyla bırakın.
+- 20 tam salınımın süresini ölçüp T değerini hesaplayın.

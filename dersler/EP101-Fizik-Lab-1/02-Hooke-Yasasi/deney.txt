@@ -1,0 +1,19 @@
+BASLIK: Hooke yasası ve yay sabiti
+SURE: 90 dk
+ZORLUK: Kolay
+OLCULEN: Uzama x (m); Kuvvet F (N); k (N/m)
+
+[AMAC]
+Yayın uzaması ile uygulanan kuvvet arasındaki doğrusal ilişkiyi incelemek.
+
+[TEORI]
+Hooke yasasına göre F = kx. F – x grafiğinin eğimi yay sabitini verir.
+
+[MALZEME]
+- Spiral yay
+- Kütle seti
+
+[ADIMLAR]
+- Yayı asıp boş konumunu okuyun.
+- Kütleleri sırayla ekleyip uzamayı kaydedin.
+- F – x grafiğinden k değerini bulun.
