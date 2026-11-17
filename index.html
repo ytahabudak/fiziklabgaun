@@ -124,9 +124,9 @@ async function home(){
   <path d="M50 4 C72 40 78 90 78 150 L78 192 L22 192 L22 150 C22 90 28 40 50 4Z" fill="#e8eef5"/>
   <path d="M50 4 C60 18 66 34 69 52 L31 52 C34 34 40 18 50 4Z" fill="#ffb454"/>
   <circle cx="50" cy="100" r="14" fill="#0c1a2b" stroke="#6fd3e8" stroke-width="4"/><rect x="36" y="192" width="28" height="9" fill="#5b6b7e"/></svg></div>
-  <div class="txt"><h1>Her fırlatış bir ölçümle başlar.</h1>
+  <div class="txt"><h1>Teoriniz ne kadar güzel olursa olsun, ne kadar akıllı olursanız olun, deneyle uyuşmuyorsa yanlıştır. "Richard Feynman"</h1>
   <p>Gaziantep Üniversitesi Fizik Mühendisliği laboratuvar deneyleri: videolar, malzeme listeleri ve yapılış adımları tek yerde.</p>
-  <small class="ui">Sayfayı aşağı kaydırın, roket yükselsin.</small></div></section>
+  <small class="ui">Ders Listesi Aşağıda Bulunuyor</small></div></section>
   <section class="wrap"><h2 class="ui" style="margin-top:0">Dersler</h2><div class="courses">${
   L.map(d=>`<a class="course" href="#/${enc(d.k)}"><div class="kod">${esc(d.o.KOD||d.k)}</div><h3>${esc(d.o.AD||d.k)}</h3><p>${esc([d.o.OZET,d.o.DONEM].filter(Boolean).join(' · '))}</p></a>`).join('')||'<p>Henüz ders eklenmemiş.</p>'}</div></section>`;
 }
